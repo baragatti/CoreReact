@@ -1,0 +1,17 @@
+{
+	"TOTAL_REGISTROS": 3,
+	"REGISTROS": [
+		{
+			"CODIGO": 2,
+			"NOME": "Centro-Oeste"
+		},
+		{
+			"CODIGO": 1,
+			"NOME": "Litoral"
+		},
+		{
+			"CODIGO": 3,
+			"NOME": "Sul"
+		}
+	]
+}

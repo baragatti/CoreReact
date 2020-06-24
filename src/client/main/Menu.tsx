@@ -1,0 +1,89 @@
+import {makeStyles} from '@material-ui/core/styles';
+import React from 'react';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
+import {NameToken} from '../../modules/NameToken';
+import {useHistory} from 'react-router-dom';
+
+export const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+  toolbar: {
+    ...theme.mixins.toolbar,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logo: {
+    cursor: 'pointer',
+  },
+}));
+
+export interface ItemMenu {
+  nome: string;
+  nameToken?: NameToken;
+  action?: () => void;
+  itens?: ItemMenu[];
+}
+
+const itensMenu: ItemMenu[] = [
+  {nome: 'Consulta de rotas', nameToken: NameToken.ROTAS},
+  {nome: 'Cadastro de rotas', nameToken: NameToken.ROTAS_CADASTRO},
+];
+
+const itensMenuInferior: ItemMenu[] = [
+  {nome: 'Sair', action: () => null},
+];
+
+const MenuItemComponent = (props: { item: ItemMenu }) => {
+  const {item} = props;
+  const history = useHistory();
+
+  const onClickMenu = () => {
+    if (item.action) {
+      item.action();
+    } else {
+      history.push(item.nameToken.endpoint);
+    }
+  };
+
+  return (
+    <ListItem button>
+      <ListItemText primary={item.nome} onClick={onClickMenu}/>
+    </ListItem>
+  );
+};
+
+const Menu: React.FC = () => {
+  const classes = useStyles();
+  const history = useHistory();
+
+  return (
+    <div>
+      <div className={classes.toolbar}>
+        <img
+          src="assets/logo.png"
+          alt="VendasExternas"
+          className={classes.logo}
+          onClick={() => history.push('/')}
+        />
+      </div>
+      <Divider/>
+      <List>
+        {itensMenu.map((item, index) => (
+          <MenuItemComponent key={'item-' + index} item={item}/>
+        ))}
+      </List>
+      <Divider/>
+      <List>
+        {itensMenuInferior.map((item, index) => (
+          <MenuItemComponent key={'item-inferior-' + index} item={item}/>
+        ))}
+      </List>
+    </div>
+  );
+};
+
+export default Menu;

@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import TraducaoYup from './modules/TraducaoYup';
 import * as serviceWorker from './serviceWorker';
+import Router from './modules/Router';
+import theme from './styles/Theme';
+import {ThemeProvider} from '@material-ui/core';
+import './styles/styles.scss';
+
+TraducaoYup.registrar();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.Fragment>
+      <ThemeProvider theme={theme}>
+        <Router/>
+      </ThemeProvider>
+    </React.Fragment>,
+    document.getElementById('root'),
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
