@@ -4,16 +4,16 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import {drawerWidth} from '../client/main/Menu';
 import {useDebouncer} from '../common/Debouncer';
 
-const alturaBarra = 52;
+export const alturaBarraAcoes = 68;
 const larguraMaxima = 960;
 
 const useStyles = makeStyles(() => ({
   wrapper: {
-    position: 'absolute',
+    position: 'fixed',
     display: 'flex',
     bottom: 0,
     zIndex: 999,
-    height: alturaBarra + 16,
+    height: alturaBarraAcoes,
     padding: 8,
   },
   card: {

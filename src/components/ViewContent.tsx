@@ -1,14 +1,17 @@
 import React from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import {createStyles} from '@material-ui/core';
+import {alturaBarraAcoes} from './BarraAcoes';
 
 const useStyles = makeStyles(() =>
   createStyles({
     viewContent: {
       display: 'flex',
+      flexDirection: 'column',
       width: '100%',
       maxWidth: 960,
       padding: 16,
+      paddingBottom: alturaBarraAcoes + 8,
       marginLeft: 'auto',
       marginRight: 'auto',
       '& > *': {
