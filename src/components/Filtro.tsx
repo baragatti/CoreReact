@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import {
+  Box,
   Button,
   createStyles,
   Drawer,
@@ -12,7 +13,6 @@ import {
   Typography,
 } from '@material-ui/core';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import {drawerWidth} from '../client/main/Menu';
 
 export interface Ordenacao {
   nome: string;
@@ -43,21 +43,17 @@ interface Props {
 
 const useStyles = makeStyles(() =>
   createStyles({
-    wrapper: {
-      display: 'flex',
-      width: '100%',
-      height: 36,
-      borderBottom: 'solid 1px #e0e0e0',
-    },
     botaoFiltro: {
       marginLeft: 'auto',
-      marginRight: 8,
+      '&:hover': {
+        backgroundColor: 'transparent',
+      },
     },
     filtroDrawer: {
-      width: drawerWidth,
+      width: 300,
       padding: 16,
     },
-    campoOrdenacao: {
+    fullWidth: {
       width: '100%',
     },
     legendaFiltro: {
@@ -65,10 +61,13 @@ const useStyles = makeStyles(() =>
     },
     botoesFiltro: {
       marginTop: 16,
-      textAlign: 'end',
-    },
-    botaoFiltrar: {
-      marginLeft: 16,
+      display: 'flex',
+      margin: '0 -8px',
+      '& > *': {
+        flexGrow: 1,
+        flexBasis: '50%',
+        margin: '0 8px',
+      },
     },
   }),
 );
@@ -127,7 +126,7 @@ const Filtro: React.FC<React.PropsWithChildren<Props>> = (props: React.PropsWith
           </Typography>
           <div>
             {ordenacoes && (
-              <FormControl className={classes.campoOrdenacao}>
+              <FormControl className={classes.fullWidth}>
                 <InputLabel>Ordenação</InputLabel>
                 <Select
                   value={ordenacao || 0}
@@ -147,15 +146,17 @@ const Filtro: React.FC<React.PropsWithChildren<Props>> = (props: React.PropsWith
             {children}
           </div>
           <div className={classes.botoesFiltro}>
+            <Box boxShadow={1}>
+              <Button
+                className={classes.fullWidth}
+                color="primary"
+                size="medium"
+                onClick={limpar}
+              >
+                Limpar
+              </Button>
+            </Box>
             <Button
-              color="primary"
-              size="medium"
-              onClick={limpar}
-            >
-              Limpar
-            </Button>
-            <Button
-              className={classes.botaoFiltrar}
               color="primary"
               size="medium"
               variant="contained"
@@ -166,7 +167,7 @@ const Filtro: React.FC<React.PropsWithChildren<Props>> = (props: React.PropsWith
           </div>
         </div>
       </Drawer>
-      <div className={classes.wrapper}>
+      <div>
         <IconButton
           className={classes.botaoFiltro}
           color={isFiltrando ? 'primary' : 'default'}
@@ -174,7 +175,7 @@ const Filtro: React.FC<React.PropsWithChildren<Props>> = (props: React.PropsWith
           aria-label="Abrir filtros"
           onClick={() => setOpen(true)}
         >
-          <FilterListIcon/> Filtros
+          <FilterListIcon/> Filtrar
         </IconButton>
       </div>
     </>

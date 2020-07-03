@@ -23,12 +23,14 @@ const RotasView: React.FC<Props> = (props: Props) => {
     <>
       <AppBar title="Consulta de rotas"/>
       <ViewMain>
-        <RotasFiltro onSubmit={(filtros: string, ordenacoes: string) => {
-          store.filtrar(filtros, ordenacoes);
-        }}/>
         <ViewContent>
           <CardRegistros<Rota>
             titulo="Rotas"
+            acoesHeader={(
+              <RotasFiltro onSubmit={(filtros: string, ordenacoes: string) => {
+                store.filtrar(filtros, ordenacoes);
+              }}/>
+            )}
             registros={store.rotas}
             keyHandler={(rota: Rota) => `${rota.CODIGO || ''}`}
             renderItem={(rota: Rota) => (

@@ -5,7 +5,15 @@ import {createStyles} from '@material-ui/core';
 const useStyles = makeStyles(() =>
   createStyles({
     viewContent: {
+      display: 'flex',
+      width: '100%',
+      maxWidth: 960,
       padding: 16,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      '& > *': {
+        flexGrow: 1,
+      },
     },
   }),
 );
