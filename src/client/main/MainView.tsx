@@ -42,8 +42,8 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '100%',
     },
     menuItem: {
-      'paddingTop': 0,
-      'paddingBottom': 0,
+      paddingTop: 0,
+      paddingBottom: 0,
       '&.Mui-selected': {
         backgroundColor: '#FFF',
       },

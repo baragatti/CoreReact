@@ -21,11 +21,11 @@ const useStyles = makeStyles(() => ({
     padding: 0,
   },
   cardContent: {
-    'display': 'flex',
-    'alignItems': 'center',
-    'justifyContent': 'flex-end',
-    'width': '100%',
-    'padding': 8,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    width: '100%',
+    padding: 8,
     '&:last-child': {
       paddingBottom: 0,
     },

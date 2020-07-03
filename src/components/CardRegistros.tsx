@@ -14,9 +14,9 @@ interface Props<T> {
 
 const useStyles = makeStyles(() => ({
   registro: {
-    'width': '100%',
-    'padding': 16,
-    'borderBottom': 'solid 1px #e0e0e0',
+    width: '100%',
+    padding: 16,
+    borderBottom: 'solid 1px #e0e0e0',
     '&:last-child': {
       borderBottom: 'none',
     },

@@ -10,8 +10,8 @@ interface Props<T> {
 
 const useStyles = makeStyles(() => ({
   campoFormulario: {
-    'padding': 8,
-    'width': '100%',
+    padding: 8,
+    width: '100%',
     '& > *': {
       width: '100%',
     },
