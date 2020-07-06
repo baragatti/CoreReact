@@ -1,12 +1,12 @@
 import React from 'react';
 import {action, observable} from 'mobx';
-import Store from '../../../components/Store';
+import Bloc from '../../../components/Bloc';
 import {bindView} from '../../../components/ViewWrapper';
 import Filtro, {CampoFiltro} from '../../../components/Filtro';
 import {TextField} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
-class RotasFiltroBloc extends Store {
+class RotasFiltroBloc extends Bloc {
   @observable nome: string = '';
 
   @action
@@ -23,13 +23,13 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface Props {
-  store?: RotasFiltroBloc;
+  bloc?: RotasFiltroBloc;
   onSubmit: (filtros: string, ordenacoes: string) => void;
 }
 
 const RotasFiltro: React.FC<Props> = (props: Props) => {
   const classes = useStyles();
-  const {store, onSubmit} = props;
+  const {bloc, onSubmit} = props;
 
   return (
     <Filtro
@@ -48,20 +48,20 @@ const RotasFiltro: React.FC<Props> = (props: Props) => {
       montarFiltros={() => {
         const filtros: CampoFiltro[] = [];
 
-        if (store.nome) {
-          filtros.push(new CampoFiltro('NOME', 'IG', store.nome));
+        if (bloc.nome) {
+          filtros.push(new CampoFiltro('NOME', 'IG', bloc.nome));
         }
 
         return filtros;
       }}
-      onLimpar={() => store.limpar()}
+      onLimpar={() => bloc.limpar()}
       onSubmit={onSubmit}
     >
       <TextField
         className={classes.campo}
         label="Nome"
-        value={store.nome}
-        onChange={(event) => store.nome = event.target.value}
+        value={bloc.nome}
+        onChange={(event) => bloc.nome = event.target.value}
       />
     </Filtro>
   );

@@ -9,15 +9,15 @@ import CardRegistros from '../../../components/CardRegistros';
 import Rota from '../Rota';
 
 interface Props {
-  store?: RotasBloc;
+  bloc?: RotasBloc;
 }
 
 const RotasView: React.FC<Props> = (props: Props) => {
-  const {store} = props;
+  const {bloc} = props;
 
   useEffect(() => {
-    store.buscarRegistros();
-  }, [store]);
+    bloc.buscarRegistros();
+  }, [bloc]);
 
   return (
     <>
@@ -28,10 +28,10 @@ const RotasView: React.FC<Props> = (props: Props) => {
             titulo="Rotas"
             acoesHeader={(
               <RotasFiltro onSubmit={(filtros: string, ordenacoes: string) => {
-                store.filtrar(filtros, ordenacoes);
+                bloc.filtrar(filtros, ordenacoes);
               }}/>
             )}
-            registros={store.rotas}
+            registros={bloc.rotas}
             keyHandler={(rota: Rota) => `${rota.CODIGO || ''}`}
             renderItem={(rota: Rota) => (
               <div>{rota.NOME}</div>

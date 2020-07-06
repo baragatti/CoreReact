@@ -1,10 +1,10 @@
 import {action, observable} from 'mobx';
 import Rota from '../Rota';
-import Store from '../../../components/Store';
+import Bloc from '../../../components/Bloc';
 import RotasService from '../RotasService';
 import RotasServiceImpl from '../RotasServiceImpl';
 
-export default class RotasBloc extends Store {
+export default class RotasBloc extends Bloc {
   private rotasService: RotasService = new RotasServiceImpl();
   @observable rotas: Rota[] = [];
   filtros: string = '';

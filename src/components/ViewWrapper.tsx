@@ -1,31 +1,31 @@
 import React from 'react';
 import {inject, observer, Provider} from 'mobx-react';
-import Store from './Store';
+import Bloc from './Bloc';
 
 @inject('store')
 class StoreHolder extends React.PureComponent<React.PropsWithChildren<any>> {
   render() {
-    return React.cloneElement(this.props.children as React.ReactElement, {store: this.props.store});
+    return React.cloneElement(this.props.children as React.ReactElement, {bloc: this.props.store});
   }
 }
 
-type ViewProps = { store?: Store };
+type ViewProps = { bloc?: Bloc };
 
-export function bindView<T extends ViewProps>(View: React.ComponentType<T>, Store: new () => Store) {
+export function bindView<T extends ViewProps>(View: React.ComponentType<T>, ViewBloc: new () => Bloc) {
   const WrappedView: React.ComponentType<T> = observer(View);
 
   return class Wrapper extends React.PureComponent<T> {
-    private store: Store = null;
+    private bloc: Bloc = null;
 
     constructor(props: T) {
       super(props);
 
-      this.store = new Store();
+      this.bloc = new ViewBloc();
     }
 
     render() {
       return (
-        <Provider store={this.store}>
+        <Provider store={this.bloc}>
           <StoreHolder>
             <WrappedView {...this.props}/>
           </StoreHolder>

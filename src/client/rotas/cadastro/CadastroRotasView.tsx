@@ -14,7 +14,7 @@ import {useHistory} from 'react-router-dom';
 import {NameToken} from '../../../modules/NameToken';
 
 interface Props {
-  store?: CadastroRotasBloc;
+  bloc?: CadastroRotasBloc;
 }
 
 const formSchema = yup.object().shape({
@@ -25,13 +25,13 @@ const formSchema = yup.object().shape({
 
 function CadastroRotasView(props: Props) {
   const history = useHistory();
-  const {store} = props;
-  const {rota, erros} = props.store;
+  const {bloc} = props;
+  const {rota, erros} = props.bloc;
 
   const onSubmit = () => {
     formSchema.validate(rota)
         .then(async () => {
-          await store.cadastrar();
+          await bloc.cadastrar();
 
           history.push(NameToken.ROTAS.endpoint);
         })
