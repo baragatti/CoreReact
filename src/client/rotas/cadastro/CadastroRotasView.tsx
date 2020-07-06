@@ -47,12 +47,12 @@ function CadastroRotasView(props: Props) {
           <CardContent>
             <Formulario<Rota> objeto={rota} erros={erros}>
               <Grid container>
-                <Grid item md={6}>
+                <Grid item md={6} xs={12}>
                   <CampoFormulario propriedade="NOME">
                     <TextField label="Nome"/>
                   </CampoFormulario>
                 </Grid>
-                <Grid item md={6}>
+                <Grid item md={6} xs={12}>
                   <CampoFormulario propriedade="OBSERVACAO">
                     <TextField label="Observação"/>
                   </CampoFormulario>
