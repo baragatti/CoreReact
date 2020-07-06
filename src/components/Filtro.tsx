@@ -6,7 +6,6 @@ import {
   createStyles,
   Drawer,
   FormControl,
-  IconButton,
   InputLabel,
   MenuItem,
   Select,
@@ -45,9 +44,6 @@ const useStyles = makeStyles(() =>
   createStyles({
     botaoFiltro: {
       marginLeft: 'auto',
-      '&:hover': {
-        backgroundColor: 'transparent',
-      },
     },
     filtroDrawer: {
       width: 300,
@@ -60,7 +56,7 @@ const useStyles = makeStyles(() =>
       marginBottom: 16,
     },
     botoesFiltro: {
-      marginTop: 16,
+      marginTop: 32,
       display: 'flex',
       margin: '0 -8px',
       '& > *': {
@@ -168,15 +164,15 @@ const Filtro: React.FC<React.PropsWithChildren<Props>> = (props: React.PropsWith
         </div>
       </Drawer>
       <div>
-        <IconButton
-          className={classes.botaoFiltro}
-          color={isFiltrando ? 'primary' : 'default'}
-          size="small"
+        <Button
           aria-label="Abrir filtros"
+          color={isFiltrando ? 'primary' : 'default'}
+          className={classes.botaoFiltro}
+          startIcon={<FilterListIcon />}
           onClick={() => setOpen(true)}
         >
-          <FilterListIcon/> Filtrar
-        </IconButton>
+          Filtrar
+        </Button>
       </div>
     </>
   );

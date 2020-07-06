@@ -9,7 +9,9 @@ class StoreHolder extends React.PureComponent<React.PropsWithChildren<any>> {
   }
 }
 
-export function bindView<T extends { store?: Store }>(View: React.ComponentType<T>, Store: new () => Store) {
+type ViewProps = { store?: Store };
+
+export function bindView<T extends ViewProps>(View: React.ComponentType<T>, Store: new () => Store) {
   const WrappedView: React.ComponentType<T> = observer(View);
 
   return class Wrapper extends React.PureComponent<T> {

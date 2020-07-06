@@ -19,6 +19,29 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     cursor: 'pointer',
   },
+  itemMenu: {
+    paddingLeft: 24,
+    '@global': {
+      '.MuiTypography-root': {
+        fontSize: 13,
+        color: '#282828',
+      },
+    },
+  },
+  itemMenuGrupo: {
+    '@global': {
+      '.MuiTypography-root': {
+        fontWeight: 'bold',
+      },
+    },
+  },
+  itemMenuSelecionado: {
+    '@global': {
+      '.MuiTypography-root': {
+        color: '#03a9f4',
+      },
+    },
+  },
 }));
 
 export interface ItemMenu {
@@ -39,6 +62,7 @@ const itensMenuInferior: ItemMenu[] = [
 
 const MenuItemComponent = (props: { item: ItemMenu }) => {
   const {item} = props;
+  const classes = useStyles();
   const history = useHistory();
 
   const onClickMenu = () => {
@@ -50,8 +74,14 @@ const MenuItemComponent = (props: { item: ItemMenu }) => {
   };
 
   return (
-    <ListItem button>
-      <ListItemText primary={item.nome} onClick={onClickMenu}/>
+    <ListItem
+      className={`${classes.itemMenu} ${classes.itemMenuGrupo}`}
+      button
+    >
+      <ListItemText
+        primary={item.nome}
+        onClick={onClickMenu}
+      />
     </ListItem>
   );
 };

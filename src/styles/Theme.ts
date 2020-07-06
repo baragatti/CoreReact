@@ -18,7 +18,6 @@ const theme = createMuiTheme({
       'A400': '#2979ff',
       'A700': '#2962ff',
       'main': '#1E96F3',
-      'dark': '#FFFFFF',
     },
   },
 });

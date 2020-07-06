@@ -17,7 +17,7 @@ const RotasView: React.FC<Props> = (props: Props) => {
 
   useEffect(() => {
     store.buscarRegistros();
-  }, []);
+  }, [store]);
 
   return (
     <>

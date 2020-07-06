@@ -61,11 +61,11 @@ const BarraAcoes: React.FC<React.PropsWithChildren<{}>> = (props: React.PropsWit
     atualizarTamanho();
 
     return () => window.removeEventListener('resize', atualizarTamanhoDebouncer);
-  }, []);
+  }, [atualizarTamanho, atualizarTamanhoDebouncer]);
 
   useEffect(() => {
     atualizarTamanho();
-  }, []);
+  }, [atualizarTamanho]);
 
   return (
     <div
