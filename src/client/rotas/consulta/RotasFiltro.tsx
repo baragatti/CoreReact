@@ -1,6 +1,6 @@
 import React from 'react';
 import {action, observable} from 'mobx';
-import Bloc from '../../../components/Bloc';
+import Bloc from '../../../types/Bloc';
 import {bindView} from '../../../components/ViewWrapper';
 import Filtro, {CampoFiltro} from '../../../components/Filtro';
 import {TextField} from '@material-ui/core';

@@ -7,9 +7,9 @@ import ViewContent from '../../../components/ViewContent';
 import RotasFiltro from './RotasFiltro';
 import CardRegistros from '../../../components/CardRegistros';
 import Rota from '../Rota';
+import ViewProps from '../../../types/ViewProps';
 
-interface Props {
-  bloc?: RotasBloc;
+interface Props extends ViewProps<RotasBloc> {
 }
 
 const RotasView: React.FC<Props> = (props: Props) => {

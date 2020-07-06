@@ -1,6 +1,6 @@
 import React from 'react';
 import {inject, observer, Provider} from 'mobx-react';
-import Bloc from './Bloc';
+import Bloc from '../types/Bloc';
 
 @inject('store')
 class StoreHolder extends React.PureComponent<React.PropsWithChildren<any>> {
@@ -9,9 +9,9 @@ class StoreHolder extends React.PureComponent<React.PropsWithChildren<any>> {
   }
 }
 
-type ViewProps = { bloc?: Bloc };
+type PropsWithBloc = { bloc?: Bloc };
 
-export function bindView<T extends ViewProps>(View: React.ComponentType<T>, ViewBloc: new () => Bloc) {
+export function bindView<T extends PropsWithBloc>(View: React.ComponentType<T>, ViewBloc: new () => Bloc) {
   const WrappedView: React.ComponentType<T> = observer(View);
 
   return class Wrapper extends React.PureComponent<T> {

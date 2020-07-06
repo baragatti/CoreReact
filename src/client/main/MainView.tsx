@@ -4,15 +4,7 @@ import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import Menu, {drawerWidth} from './Menu';
-import ViewProps from '../../types/ViewProps';
 import {AppContext} from '../../components/AppProvider';
-
-interface Props extends React.PropsWithChildren<any>, ViewProps {
-}
-
-interface State {
-  mobileOpen: boolean;
-}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

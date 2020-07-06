@@ -1,6 +1,6 @@
 import {action, observable} from 'mobx';
 import Rota from '../Rota';
-import Bloc from '../../../components/Bloc';
+import Bloc from '../../../types/Bloc';
 import RotasService from '../RotasService';
 import RotasServiceImpl from '../RotasServiceImpl';
 
