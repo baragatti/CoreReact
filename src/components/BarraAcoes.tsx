@@ -1,22 +1,25 @@
-import React, {useCallback, useEffect, useLayoutEffect, useState} from 'react';
-import {Card, CardContent} from '@material-ui/core';
+import React from 'react';
+import {Card, CardContent, Theme} from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import {drawerWidth} from '../client/main/Menu';
-import {useDebouncer} from '../common/Debouncer';
 
 export const alturaBarraAcoes = 68;
-const larguraMaxima = 960;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
   wrapper: {
+    width: 'calc(100% - 240px)',
     position: 'fixed',
     display: 'flex',
     bottom: 0,
     zIndex: 999,
     height: alturaBarraAcoes,
     padding: 8,
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
   card: {
+    margin: '0 auto 0 auto',
+    maxWidth: 960,
     width: '100%',
     padding: 0,
   },
@@ -34,44 +37,10 @@ const useStyles = makeStyles(() => ({
 
 const BarraAcoes: React.FC<React.PropsWithChildren<{}>> = (props: React.PropsWithChildren<{}>) => {
   const {children} = props;
-  const [estilo, setEstilo] = useState({width: 0, marginLeft: 0});
   const classes = useStyles();
 
-  const atualizarTamanho = useCallback(() => {
-    let width = window.innerWidth;
-    let marginLeft = 0;
-    const drawerVisivel = window.innerWidth > larguraMaxima;
-
-    if (drawerVisivel) {
-      width -= drawerWidth;
-    }
-
-    if (width > larguraMaxima) {
-      marginLeft = (width - larguraMaxima) / 2;
-      width = larguraMaxima;
-    }
-
-    setEstilo({width, marginLeft});
-  }, []);
-  const atualizarTamanhoDebouncer = useDebouncer(() => atualizarTamanho(), 100);
-
-  useLayoutEffect(() => {
-    window.addEventListener('resize', atualizarTamanhoDebouncer);
-
-    atualizarTamanho();
-
-    return () => window.removeEventListener('resize', atualizarTamanhoDebouncer);
-  }, [atualizarTamanho, atualizarTamanhoDebouncer]);
-
-  useEffect(() => {
-    atualizarTamanho();
-  }, [atualizarTamanho]);
-
   return (
-    <div
-      style={estilo}
-      className={classes.wrapper}
-    >
+    <div className={classes.wrapper}>
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           {children}

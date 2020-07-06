@@ -1,13 +1,28 @@
 import React from 'react';
 import {action, observable} from 'mobx';
-import Bloc from '../../../types/Bloc';
 import {bindView} from '../../../components/ViewWrapper';
-import Filtro, {CampoFiltro} from '../../../components/Filtro';
+import Filtro from '../../../components/Filtro';
 import {TextField} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
+import Select from '../../../components/Select';
+import Ordenacao from '../../../shared/Ordenacao';
 
-class RotasFiltroBloc extends Bloc {
+const ordenacoes: Ordenacao[] = [
+  {
+    nome: 'Nome A..Z',
+    campo: 'NOME',
+    direcao: 'ASC',
+  },
+  {
+    nome: 'Nome Z..A',
+    campo: 'NOME',
+    direcao: 'DESC',
+  },
+];
+
+class RotasFiltroBloc {
   @observable nome: string = '';
+  @observable ordenacao: Ordenacao = ordenacoes[0];
 
   @action
   limpar() {
@@ -33,30 +48,19 @@ const RotasFiltro: React.FC<Props> = (props: Props) => {
 
   return (
     <Filtro
-      ordenacoes={[
-        {
-          nome: 'Nome A..Z',
-          campo: 'NOME',
-          direcao: 'ASC',
-        },
-        {
-          nome: 'Nome Z..A',
-          campo: 'NOME',
-          direcao: 'DESC',
-        },
-      ]}
-      montarFiltros={() => {
-        const filtros: CampoFiltro[] = [];
-
-        if (bloc.nome) {
-          filtros.push(new CampoFiltro('NOME', 'IG', bloc.nome));
-        }
-
-        return filtros;
-      }}
       onLimpar={() => bloc.limpar()}
-      onSubmit={onSubmit}
+      onSubmit={() => {
+        onSubmit('', '');
+      }}
     >
+      <Select<Ordenacao>
+        placeholder="Ordenação"
+        list={ordenacoes}
+        value={bloc.ordenacao}
+        keyHandler={(ordenacao: Ordenacao) => ordenacao?.nome}
+        descriptionHandler={(ordenacao: Ordenacao) => ordenacao?.nome}
+        onChange={((ordenacao: Ordenacao) => bloc.ordenacao = ordenacao)}
+      />
       <TextField
         className={classes.campo}
         label="Nome"

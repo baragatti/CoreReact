@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingLeft: 16,
       paddingRight: 16,
     },
-    content: {
+    main: {
       flexGrow: 1,
     },
   }),
@@ -21,7 +21,7 @@ const ViewMain: React.FC<React.PropsWithChildren<any>> = (props: React.PropsWith
   const classes = useStyles();
 
   return (
-    <main className={classes.content}>
+    <main className={classes.main}>
       <div className={classes.toolbar}/>
       {props.children}
     </main>

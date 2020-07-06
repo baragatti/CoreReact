@@ -1,10 +1,20 @@
 import React from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import {createStyles} from '@material-ui/core';
+import {createStyles, Theme} from '@material-ui/core';
 import {alturaBarraAcoes} from './BarraAcoes';
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    toolbar: {
+      ...theme.mixins.toolbar,
+      paddingTop: 8,
+      paddingBottom: 4,
+      paddingLeft: 16,
+      paddingRight: 16,
+    },
+    main: {
+      flexGrow: 1,
+    },
     viewContent: {
       display: 'flex',
       flexDirection: 'column',
@@ -25,8 +35,11 @@ const ViewContent: React.FC<React.PropsWithChildren<any>> = (props: React.PropsW
   const classes = useStyles();
 
   return (
-    <main className={classes.viewContent}>
-      {props.children}
+    <main className={classes.main}>
+      <div className={classes.toolbar}/>
+      <div className={classes.viewContent}>
+        {props.children}
+      </div>
     </main>
   );
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import CadastroRotasBloc from './CadastroRotasBloc';
 import {bindView} from '../../../components/ViewWrapper';
 import AppBar from '../../../components/AppBar';
-import ViewMain from '../../../components/ViewMain';
 import ViewContent from '../../../components/ViewContent';
 import {Button, Card, CardContent, Grid, TextField} from '@material-ui/core';
 import CampoFormulario from '../../../components/CampoFormulario';
@@ -43,28 +42,26 @@ function CadastroRotasView(props: Props) {
   return (
     <>
       <AppBar title="Cadastro de rotas"/>
-      <ViewMain>
-        <ViewContent>
-          <Card>
-            <CardContent>
-              <Formulario<Rota> objeto={rota} erros={erros}>
-                <Grid container>
-                  <Grid item md={6}>
-                    <CampoFormulario propriedade="NOME">
-                      <TextField label="Nome"/>
-                    </CampoFormulario>
-                  </Grid>
-                  <Grid item md={6}>
-                    <CampoFormulario propriedade="OBSERVACAO">
-                      <TextField label="Observação"/>
-                    </CampoFormulario>
-                  </Grid>
+      <ViewContent>
+        <Card>
+          <CardContent>
+            <Formulario<Rota> objeto={rota} erros={erros}>
+              <Grid container>
+                <Grid item md={6}>
+                  <CampoFormulario propriedade="NOME">
+                    <TextField label="Nome"/>
+                  </CampoFormulario>
                 </Grid>
-              </Formulario>
-            </CardContent>
-          </Card>
-        </ViewContent>
-      </ViewMain>
+                <Grid item md={6}>
+                  <CampoFormulario propriedade="OBSERVACAO">
+                    <TextField label="Observação"/>
+                  </CampoFormulario>
+                </Grid>
+              </Grid>
+            </Formulario>
+          </CardContent>
+        </Card>
+      </ViewContent>
       <BarraAcoes>
         <Button color="primary" variant="contained" onClick={onSubmit}>
           Salvar

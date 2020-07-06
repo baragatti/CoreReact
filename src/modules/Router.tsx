@@ -47,9 +47,6 @@ const Router: React.FC = () => {
   return (
     <HashRouter>
       <CacheSwitch>
-        <Route exact path='/login'>
-          <Redirect to={NameToken.ROTAS.endpoint}/>
-        </Route>
         <Route exact path='/'>
           <Redirect to={NameToken.ROTAS.endpoint}/>
         </Route>
