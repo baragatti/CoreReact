@@ -1,12 +1,12 @@
 import React from 'react';
-import RotasView from '../client/rotas/consulta/RotasView';
-import CadastroRotasView from '../client/rotas/cadastro/CadastroRotasView';
+import ConsultaExemploView from '../client/exemplo/consulta/ConsultaExemploView';
+import CadastroExemploView from '../client/exemplo/cadastro/CadastroExemploView';
 
 export class NameToken {
   public static allValues: NameToken[] = [];
 
-  static readonly ROTAS = new NameToken({endpoint: 'rotas', component: RotasView});
-  static readonly ROTAS_CADASTRO = new NameToken({endpoint: 'rotas-cadastro', component: CadastroRotasView});
+  static readonly EXEMPLO_CONSULTA = new NameToken({endpoint: 'exemplo', component: ConsultaExemploView});
+  static readonly EXEMPLO_CADASTRO = new NameToken({endpoint: 'exemplo-cadastro', component: CadastroExemploView});
 
   private constructor(private readonly tokenData: TokenData) {
     NameToken.allValues.push(this);

@@ -5,7 +5,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 
 interface Props {
   onLimpar: () => void;
-  onSubmit: () => void;
+  onFiltrar: () => void;
 }
 
 const useStyles = makeStyles(() =>
@@ -36,18 +36,18 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-const Filtro: React.FC<React.PropsWithChildren<Props>> = (props: React.PropsWithChildren<Props>) => {
+const CardFiltros: React.FC<React.PropsWithChildren<Props>> = (props: React.PropsWithChildren<Props>) => {
   const classes = useStyles();
   const [isOpen, setOpen] = useState(false);
   const [isFiltrando, setFiltrando] = useState(false);
   const {
     children,
     onLimpar,
-    onSubmit,
+    onFiltrar,
   } = props;
 
   const filtrar = (isLimpando?: boolean) => {
-    onSubmit();
+    onFiltrar();
 
     setFiltrando(!isLimpando);
 
@@ -114,4 +114,4 @@ const Filtro: React.FC<React.PropsWithChildren<Props>> = (props: React.PropsWith
   );
 };
 
-export default Filtro;
+export default CardFiltros;

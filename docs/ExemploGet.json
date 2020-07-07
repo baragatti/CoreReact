@@ -1,0 +1,17 @@
+{
+	"TOTAL_REGISTROS": 3,
+	"REGISTROS": [
+		{
+			"CODIGO": 1,
+			"NOME": "Exemplo 1"
+		},
+		{
+			"CODIGO": 2,
+			"NOME": "Exemplo 2"
+		},
+		{
+			"CODIGO": 3,
+			"NOME": "Exemplo 3"
+		}
+	]
+}

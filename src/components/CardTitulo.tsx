@@ -43,15 +43,16 @@ const CardTitulo = (props: React.PropsWithChildren<Props>) => {
         className={classes.cardHeader}
         title={(
           <div className={classes.cardHeaderContent}>
-            <div>{titulo}</div>
+            <div style={{fontWeight: 400, fontSize: '20px'}}>{titulo}</div>
             {acoesHeader && (
               <div className={classes.cardHeaderActions}>{acoesHeader}</div>
             )}
           </div>
         )}
-        titleTypographyProps={{variant: 'h6'}}
+        // titleTypographyProps={{variant: 'h5'}}
+        disableTypography={true}
       >
-        <div>Filtro ueueue</div>
+        <div>Filtro</div>
       </CardHeader>
       <CardContent className={classes.cardContent}>
         <div className={classes.container}>

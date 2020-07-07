@@ -1,5 +1,6 @@
 import React from 'react';
 import {inject, observer, Provider} from 'mobx-react';
+import ViewProps from './types/ViewProps';
 
 @inject('store')
 class StoreHolder extends React.PureComponent<React.PropsWithChildren<any>> {
@@ -8,15 +9,13 @@ class StoreHolder extends React.PureComponent<React.PropsWithChildren<any>> {
   }
 }
 
-type PropsWithBloc = { bloc?: any };
+export function bindView<T, U extends ViewProps<T>>(View: React.ComponentType<U>, ViewBloc: new () => T) {
+  const WrappedView: React.ComponentType<U> = observer(View);
 
-export function bindView<T extends PropsWithBloc>(View: React.ComponentType<T>, ViewBloc: new () => any) {
-  const WrappedView: React.ComponentType<T> = observer(View);
-
-  return class Wrapper extends React.PureComponent<T> {
+  return class Wrapper extends React.PureComponent<U> {
     private bloc: any = null;
 
-    constructor(props: T) {
+    constructor(props: U) {
       super(props);
 
       this.bloc = new ViewBloc();

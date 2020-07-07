@@ -52,8 +52,8 @@ export interface ItemMenu {
 }
 
 const itensMenu: ItemMenu[] = [
-  {nome: 'Consulta de rotas', nameToken: NameToken.ROTAS},
-  {nome: 'Cadastro de rotas', nameToken: NameToken.ROTAS_CADASTRO},
+  {nome: 'Consulta de exemplo', nameToken: NameToken.EXEMPLO_CONSULTA},
+  {nome: 'Cadastro de exemplo', nameToken: NameToken.EXEMPLO_CADASTRO},
 ];
 
 const itensMenuInferior: ItemMenu[] = [
@@ -94,7 +94,7 @@ const Menu: React.FC = () => {
     <div>
       <div className={classes.toolbar}>
         <img
-          src="assets/logo.png"
+          src={require('../../images/logo.png')}
           alt="VendasExternas"
           className={classes.logo}
           onClick={() => history.push('/')}
