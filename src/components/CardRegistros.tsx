@@ -16,6 +16,11 @@ const useStyles = makeStyles(() => ({
   container: {
     width: '100%',
   },
+  titulo: {
+    fontWeight: 400,
+    fontSize: '18px',
+    paddingTop: 6,
+  },
   registro: {
     width: '100%',
     padding: 16,
@@ -52,7 +57,7 @@ const CardRegistros = function <T>(props: Props<T>) {
         className={cardClasses.cardHeader}
         title={(
           <div className={cardClasses.cardHeaderContent}>
-            <div style={{fontWeight: 400, fontSize: '18px', paddingTop: 6}}>{titulo}</div>
+            <div className={classes.titulo}>{titulo}</div>
             {acoesHeader && (
               <div className={cardClasses.cardHeaderActions}>{acoesHeader}</div>
             )}
