@@ -21,10 +21,10 @@ const formHandler = yup.object().shape({
 const CadastroExemploView: React.FC<ViewProps<CadastroExemploBloc>> = (props: ViewProps<CadastroExemploBloc>) => {
   const history = useHistory();
   const {bloc} = props;
-  const {rota, erros} = props.bloc;
+  const {exemplo, erros} = props.bloc;
 
   const onSubmit = () => {
-    formHandler.validate(rota)
+    formHandler.validate(exemplo)
         .then(async () => {
           await bloc.cadastrar();
 
@@ -41,7 +41,7 @@ const CadastroExemploView: React.FC<ViewProps<CadastroExemploBloc>> = (props: Vi
       <ViewContent>
         <Card>
           <CardContent>
-            <Formulario<Exemplo> objeto={rota} erros={erros}>
+            <Formulario<Exemplo> objeto={exemplo} erros={erros}>
               <Grid container>
                 <Grid item xs={12} sm={6}>
                   <CampoFormulario propriedade="NOME">

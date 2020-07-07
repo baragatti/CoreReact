@@ -27,9 +27,9 @@ const ConsultaExemploView: React.FC<ViewProps<ConsultaExemploBloc>> = (props: Vi
             }}/>
           )}
           registros={bloc.exemplos}
-          keyHandler={(rota: Exemplo) => `${rota.CODIGO || ''}`}
-          renderItem={(rota: Exemplo) => (
-            <div>{rota.NOME}</div>
+          keyHandler={(exemplo: Exemplo) => `${exemplo.CODIGO || ''}`}
+          renderItem={(exemplo: Exemplo) => (
+            <div>{exemplo.NOME}</div>
           )}
         />
       </ViewContent>
