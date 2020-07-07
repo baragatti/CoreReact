@@ -1,7 +1,7 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import {Button} from '@material-ui/core';
-import CardTitulo from './CardTitulo';
+import {Button, Card, CardContent, CardHeader} from '@material-ui/core';
+import {cardStyles} from '../styles/Styles';
 
 interface Props<T> {
   titulo?: string;
@@ -13,6 +13,9 @@ interface Props<T> {
 }
 
 const useStyles = makeStyles(() => ({
+  container: {
+    width: '100%',
+  },
   registro: {
     width: '100%',
     padding: 16,
@@ -41,26 +44,44 @@ const CardRegistros = function <T>(props: Props<T>) {
     onCarregarMaisRegistros,
   } = props;
   const classes = useStyles();
+  const cardClasses = cardStyles();
 
   return (
-    <CardTitulo titulo={titulo} acoesHeader={acoesHeader}>
-      {(registros && registros.length > 0) ? (
-        <React.Fragment>
-          {registros.map((registro) => (
-            <div key={keyHandler(registro)} className={classes.registro}>
-              {renderItem(registro)}
-            </div>
-          ))}
-          {onCarregarMaisRegistros && (
-            <Button color="primary" className={classes.botaoCarregarMais}>
-              Carregar mais registros
-            </Button>
+    <Card>
+      <CardHeader
+        className={cardClasses.cardHeader}
+        title={(
+          <div className={cardClasses.cardHeaderContent}>
+            <div style={{fontWeight: 400, fontSize: '18px', paddingTop: 6}}>{titulo}</div>
+            {acoesHeader && (
+              <div className={cardClasses.cardHeaderActions}>{acoesHeader}</div>
+            )}
+          </div>
+        )}
+      >
+        <div>Filtro</div>
+      </CardHeader>
+      <CardContent className={cardClasses.cardContent}>
+        <div className={classes.container}>
+          {(registros && registros.length > 0) ? (
+            <React.Fragment>
+              {registros.map((registro) => (
+                <div key={keyHandler(registro)} className={classes.registro}>
+                  {renderItem(registro)}
+                </div>
+              ))}
+              {onCarregarMaisRegistros && (
+                <Button color="primary" className={classes.botaoCarregarMais}>
+                  Carregar mais registros
+                </Button>
+              )}
+            </React.Fragment>
+          ) : (
+            <div className={classes.mensagemCard}>Nenhum registro encontrado</div>
           )}
-        </React.Fragment>
-      ) : (
-        <div className={classes.mensagemCard}>Nenhum registro encontrado</div>
-      )}
-    </CardTitulo>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 

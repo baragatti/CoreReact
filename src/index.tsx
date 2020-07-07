@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import TraducaoYup from './modules/TraducaoYup';
 import * as serviceWorker from './serviceWorker';
 import Router from './modules/Router';
-import theme from './styles/Theme';
 import {ThemeProvider} from '@material-ui/core';
 import './styles/styles.scss';
+import {theme} from './styles/Styles';
 
 TraducaoYup.registrar();
 

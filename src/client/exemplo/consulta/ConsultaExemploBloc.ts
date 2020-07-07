@@ -1,11 +1,18 @@
 import {action, observable} from 'mobx';
 import Exemplo from '../Exemplo';
 
+export interface ExemploFiltro {
+  nome: string;
+  ordenacao: string;
+}
+
 export default class ConsultaExemploBloc {
   @observable exemplos: Exemplo[] = [];
   @observable totalRegistros: number = 0;
-  nome: string = '';
-  ordenacao: string = '1';
+  filtro: ExemploFiltro = {
+    nome: '',
+    ordenacao: '1',
+  };
 
   @action
   buscarRegistros() {
@@ -26,25 +33,23 @@ export default class ConsultaExemploBloc {
       },
     ];
 
-    if (this.ordenacao === '1') {
+    if (this.filtro.ordenacao === '1') {
       registros.sort((a, b) => a.NOME.localeCompare(b.NOME));
     } else {
       registros.sort((a, b) => b.NOME.localeCompare(a.NOME));
     }
 
-    if (this.nome.length === 0) {
+    if (this.filtro.nome.length === 0) {
       this.exemplos = registros;
     } else {
-      this.exemplos = registros.filter((value: Exemplo) => value.NOME.includes(this.nome));
+      registros.filter((value: Exemplo) => value.NOME.includes(this.filtro.nome));
     }
-    this.totalRegistros = this.exemplos.length;
+    this.totalRegistros = registros.length;
   }
 
   @action
-  filtrar(filtros: string, ordenacoes: string) {
-    this.nome = filtros;
-    this.ordenacao = ordenacoes;
-
+  filtrar(filtro: ExemploFiltro) {
+    this.filtro = filtro;
     this.buscarRegistros();
   }
 }

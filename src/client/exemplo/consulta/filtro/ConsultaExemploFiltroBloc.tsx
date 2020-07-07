@@ -1,6 +1,7 @@
 import {action, observable} from 'mobx';
+import {ExemploFiltro} from '../ConsultaExemploBloc';
 
-export class ConsultaExemploFiltroBloc {
+export class ConsultaExemploFiltroBloc implements ExemploFiltro {
   @observable nome: string = '';
   @observable ordenacao: string = '1';
 

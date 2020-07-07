@@ -5,6 +5,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import ViewProps from '../../../../components/types/ViewProps';
 import {bindView} from '../../../../components/ViewBinder';
 import {ConsultaExemploFiltroBloc} from './ConsultaExemploFiltroBloc';
+import {ExemploFiltro} from '../ConsultaExemploBloc';
 
 const useStyles = makeStyles(() => ({
   campo: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface Props extends ViewProps<ConsultaExemploFiltroBloc> {
-  buscarRegistros: (nome: string, ordenacao: string) => void;
+  buscarRegistros: (filtros: ExemploFiltro) => void;
 }
 
 const ConsultaExemploFiltroView: React.FC<Props> = (props: Props) => {
@@ -24,7 +25,7 @@ const ConsultaExemploFiltroView: React.FC<Props> = (props: Props) => {
   return (
     <CardFiltros
       onLimpar={() => bloc.limpar()}
-      onFiltrar={() => buscarRegistros(bloc.nome, bloc.ordenacao)}
+      onFiltrar={() => buscarRegistros(bloc)}
     >
       <FormControl fullWidth={true}>
         <InputLabel id="ordenacao">Ordenação</InputLabel>
